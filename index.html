@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luminent Advisory | Cybersecurity & IT Advisory for Growing Organizations</title>
+<meta name="description" content="Framework-driven cybersecurity and IT advisory for SMBs, healthcare, retail, and financial services. NIST CSF, PCI-DSS, and vulnerability management expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #001f3f;
+  --navy-mid: #002d5a;
+  --navy-deep: #00152b;
+  --gold: #c9a84c;
+  --gold-light: #e2c47a;
+  --white: #ffffff;
+  --off-white: #f8f7f4;
+  --light-gray: #f2f1ee;
+  --text: #1a2332;
+  --text-muted: #64748b;
+  --border-light: #e2e8f0;
+  --border-gold: rgba(201,168,76,0.22);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(0,21,43,0.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 0 4rem; height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: height 0.3s;
+}
+.nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.logo-diamond { width: 32px; height: 32px; border: 1.5px solid var(--gold); transform: rotate(45deg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo-diamond-inner { width: 12px; height: 12px; background: var(--gold); }
+.logo-text { color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; line-height: 1.1; }
+.logo-est { color: var(--gold); font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.77rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta-btn { background: var(--gold); color: var(--navy) !important; padding: 9px 22px; font-weight: 600 !important; font-size: 0.73rem !important; letter-spacing: 0.12em !important; transition: background 0.2s !important; }
+.nav-cta-btn:hover { background: var(--gold-light) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { width: 22px; height: 1.5px; background: var(--white); }
+
+/* HERO */
+#home { min-height: 100vh; padding-top: 70px; background: var(--navy); display: grid; grid-template-columns: 1fr 1fr; align-items: center; position: relative; overflow: hidden; }
+.hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px); background-size: 64px 64px; }
+.hero-glow { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,61,122,0.7) 0%, transparent 65%); top: -150px; right: -200px; pointer-events: none; }
+.hero-left { padding: 5rem 3.5rem 5rem 5rem; position: relative; z-index: 2; animation: fadeUp 0.9s ease both; }
+.hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--border-gold); padding: 6px 14px 6px 10px; margin-bottom: 2rem; }
+.hero-badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.hero-badge-text { color: var(--gold); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+.hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.3rem, 3.8vw, 3.5rem); font-weight: 300; color: var(--white); line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 1.4rem; }
+.hero-h1 em { font-style: italic; color: var(--gold-light); }
+.hero-sub { color: rgba(255,255,255,0.6); font-size: 1.02rem; line-height: 1.8; max-width: 460px; margin-bottom: 0.85rem; font-weight: 300; }
+.hero-sub-bold { color: rgba(255,255,255,0.82); font-size: 0.9rem; margin-bottom: 2.5rem; font-weight: 400; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.btn-gold { background: var(--gold); color: var(--navy); padding: 15px 34px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s; display: inline-block; }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline { border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.75); padding: 15px 34px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; text-decoration: none; transition: all 0.25s; display: inline-block; }
+.btn-outline:hover { border-color: rgba(255,255,255,0.55); color: var(--white); }
+.hero-right { padding: 4rem 4rem 4rem 2rem; position: relative; z-index: 2; animation: fadeUp 0.9s ease 0.15s both; }
+.hero-problem-box { border: 1px solid var(--border-gold); background: rgba(255,255,255,0.03); padding: 2rem 2.25rem; margin-bottom: 1.25rem; }
+.hero-problem-label { color: var(--gold); font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; margin-bottom: 1rem; }
+.hero-problem-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.hero-problem-list li { color: rgba(255,255,255,0.65); font-size: 0.88rem; font-weight: 300; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+.hero-problem-list li::before { content: '—'; color: var(--gold); opacity: 0.6; flex-shrink: 0; margin-top: 1px; }
+.hero-trust-row { display: flex; gap: 1rem; }
+.hero-trust-chip { flex: 1; border: 1px solid var(--border-gold); padding: 0.9rem; text-align: center; }
+.hero-trust-chip-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--white); line-height: 1; }
+.hero-trust-chip-label { font-size: 0.62rem; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+
+/* SHARED */
+.section-eyebrow { display: inline-flex; align-items: center; gap: 11px; margin-bottom: 0.9rem; }
+.eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
+.eyebrow-text { color: var(--gold); font-size: 0.67rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; }
+.section-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em; }
+
+/* INDUSTRIES */
+#industries { background: var(--off-white); padding: 6rem 5rem; }
+.industries-top { text-align: center; margin-bottom: 3rem; }
+.industries-top .section-eyebrow { justify-content: center; }
+.industries-top p { color: var(--text-muted); font-size: 0.95rem; max-width: 580px; margin: 1rem auto 0; line-height: 1.8; font-weight: 300; }
+.industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #d8d8d8; }
+.industry-card { background: var(--white); padding: 2.25rem 2rem; transition: all 0.3s; cursor: default; }
+.industry-card:hover { background: var(--navy); }
+.industry-card:hover .ind-title, .industry-card:hover .ind-text { color: var(--white); }
+.industry-card:hover .ind-icon { color: var(--gold-light); border-color: var(--gold); }
+.industry-card:hover .ind-tag { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+.ind-icon { width: 40px; height: 40px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; color: var(--navy); font-size: 1.1rem; margin-bottom: 1.25rem; transition: all 0.3s; }
+.ind-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 0.6rem; transition: color 0.3s; }
+.ind-text { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; margin-bottom: 1rem; transition: color 0.3s; }
+.ind-tag { display: inline-block; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--border-gold); padding: 3px 9px; transition: all 0.3s; }
+
+/* WHY */
+#why { background: var(--white); padding: 7rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+#why .lead { color: var(--text-muted); font-size: 0.95rem; line-height: 1.85; font-weight: 300; margin-bottom: 2rem; }
+.why-stat-row { display: flex; gap: 0; border: 1px solid var(--border-light); margin-bottom: 1.5rem; }
+.why-stat { flex: 1; padding: 1.25rem 1.5rem; border-right: 1px solid var(--border-light); }
+.why-stat:last-child { border-right: none; }
+.why-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--navy); line-height: 1; }
+.why-stat-label { font-size: 0.73rem; color: var(--text-muted); line-height: 1.4; margin-top: 4px; font-weight: 300; }
+.why-points { display: flex; flex-direction: column; }
+.why-point { padding: 1.25rem 0; border-bottom: 1px solid var(--border-light); display: flex; gap: 1.25rem; align-items: flex-start; }
+.why-point:first-child { border-top: 1px solid var(--border-light); }
+.why-point-num { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); font-weight: 600; flex-shrink: 0; min-width: 28px; }
+.why-point-title { font-weight: 600; font-size: 0.9rem; color: var(--navy); margin-bottom: 4px; }
+.why-point-text { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+
+/* SERVICES */
+#services { background: var(--light-gray); padding: 7rem 5rem; }
+.services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.services-header p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.85; font-weight: 300; align-self: end; }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: #d0ceca; }
+.svc-card { background: var(--white); padding: 2.75rem; transition: all 0.3s; position: relative; overflow: hidden; }
+.svc-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
+.svc-card:hover::after { transform: scaleX(1); }
+.svc-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,31,63,0.08); }
+.svc-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: rgba(0,31,63,0.06); line-height: 1; margin-bottom: 0.5rem; }
+.svc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: var(--navy); margin-bottom: 0.85rem; }
+.svc-problem { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.75rem; }
+.svc-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem; }
+.svc-outcomes { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.svc-outcomes li { font-size: 0.82rem; color: var(--text); display: flex; align-items: flex-start; gap: 9px; font-weight: 400; }
+.svc-outcomes li::before { content: '✓'; color: var(--gold); font-size: 0.75rem; flex-shrink: 0; margin-top: 1px; }
+
+/* PROCESS */
+#process { background: var(--navy); padding: 7rem 5rem; }
+.process-header { text-align: center; margin-bottom: 4.5rem; }
+.process-header .section-eyebrow { justify-content: center; }
+.process-header p { color: rgba(255,255,255,0.5); font-size: 0.95rem; max-width: 520px; margin: 1rem auto 0; line-height: 1.8; font-weight: 300; }
+.process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.process-steps::before { content: ''; position: absolute; top: 28px; left: calc(12.5% + 20px); right: calc(12.5% + 20px); height: 1px; background: var(--border-gold); z-index: 0; }
+.process-step { padding: 0 1.75rem; text-align: center; position: relative; z-index: 1; }
+.process-step-num { width: 56px; height: 56px; border: 1px solid var(--gold); background: var(--navy); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); font-weight: 300; }
+.process-step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--white); margin-bottom: 0.75rem; }
+.process-step-text { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.75; font-weight: 300; }
+
+/* FRAMEWORKS */
+#frameworks { background: var(--off-white); padding: 7rem 5rem; }
+.frameworks-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.frameworks-header p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.85; font-weight: 300; align-self: end; }
+.frameworks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.fw-card { border: 1px solid var(--border-light); background: var(--white); padding: 2.75rem; transition: all 0.3s; position: relative; }
+.fw-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.4s; }
+.fw-card:hover::before { height: 100%; }
+.fw-card:hover { border-color: rgba(201,168,76,0.35); }
+.fw-abbr { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--navy); opacity: 0.1; line-height: 1; margin-bottom: 0.25rem; }
+.fw-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--navy); margin-bottom: 0.75rem; }
+.fw-text { font-size: 0.87rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem; }
+.fw-points { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.fw-points li { font-size: 0.81rem; color: var(--text); display: flex; gap: 9px; align-items: flex-start; font-weight: 300; }
+.fw-points li::before { content: '—'; color: var(--gold); opacity: 0.7; flex-shrink: 0; }
+
+/* PROOF */
+#proof { background: var(--white); padding: 7rem 5rem; }
+.proof-header { text-align: center; margin-bottom: 4rem; }
+.proof-header .section-eyebrow { justify-content: center; }
+.proof-header p { color: var(--text-muted); font-size: 0.88rem; margin-top: 0.75rem; font-weight: 300; font-style: italic; }
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.proof-card { border: 1px solid var(--border-light); padding: 2.25rem; transition: border-color 0.3s; }
+.proof-card:hover { border-color: var(--gold); }
+.proof-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 1.1rem; }
+.proof-divider { width: 30px; height: 1px; background: var(--gold); margin-bottom: 0.85rem; }
+.proof-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--navy); line-height: 1.7; margin-bottom: 1.25rem; font-weight: 400; }
+.proof-author { font-size: 0.78rem; font-weight: 600; color: var(--navy); }
+.proof-role { font-size: 0.75rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
+.proof-notice { text-align: center; color: var(--text-muted); font-size: 0.78rem; font-style: italic; font-weight: 300; }
+
+/* ABOUT */
+#about { background: var(--light-gray); padding: 7rem 5rem; display: grid; grid-template-columns: 1.1fr 1fr; gap: 6rem; align-items: center; }
+.about-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 2.8vw, 2.6rem); font-weight: 300; color: var(--navy); line-height: 1.18; margin-bottom: 1.25rem; }
+.about-text { color: var(--text-muted); font-size: 0.92rem; line-height: 1.85; font-weight: 300; margin-bottom: 1rem; }
+.about-why { border-left: 2px solid var(--gold); padding-left: 1.25rem; margin: 1.75rem 0; }
+.about-why p { font-size: 0.95rem; color: var(--text); line-height: 1.8; font-style: italic; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+.about-creds-col { display: flex; flex-direction: column; gap: 0.85rem; }
+.cred-item { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem; border: 1px solid var(--border-light); background: var(--white); transition: all 0.3s; }
+.cred-item:hover { border-color: var(--gold); transform: translateX(4px); }
+.cred-badge { width: 42px; height: 42px; background: var(--navy); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 0.65rem; letter-spacing: 0.03em; font-weight: 600; flex-shrink: 0; text-align: center; line-height: 1.3; }
+.cred-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 1px; }
+.cred-org { font-size: 0.73rem; color: var(--text-muted); font-weight: 300; }
+.about-independent { background: var(--navy); padding: 1.5rem; margin-top: 1rem; display: flex; gap: 1rem; align-items: flex-start; }
+.about-independent-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+.about-independent p { color: rgba(255,255,255,0.6); font-size: 0.82rem; line-height: 1.7; font-weight: 300; }
+.about-independent strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* CONTACT */
+#contact { background: var(--navy); padding: 7rem 5rem; display: grid; grid-template-columns: 1fr 1.15fr; gap: 6rem; align-items: start; }
+.contact-left .section-h { color: var(--white); margin-bottom: 1.25rem; }
+.contact-left .lead { color: rgba(255,255,255,0.5); font-size: 0.93rem; line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; }
+.contact-cta-highlight { border: 1px solid var(--border-gold); padding: 1.5rem; display: flex; gap: 1.1rem; align-items: flex-start; margin-bottom: 1.25rem; }
+.contact-cta-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
+.contact-cta-title { color: var(--white); font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+.contact-cta-sub { color: rgba(255,255,255,0.45); font-size: 0.82rem; font-weight: 300; line-height: 1.6; }
+.contact-meta { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.75rem; }
+.contact-meta-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.45); font-size: 0.82rem; font-weight: 300; }
+.contact-meta-item::before { content: '◎'; color: var(--gold); opacity: 0.6; font-size: 0.7rem; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); font-weight: 500; }
+.form-field input, .form-field select, .form-field textarea { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 13px 15px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s; width: 100%; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--gold); }
+.form-field input::placeholder, .form-field textarea::placeholder { color: rgba(255,255,255,0.2); }
+.form-field select { appearance: none; cursor: pointer; }
+.form-field select option { background: var(--navy-deep); }
+.form-field textarea { resize: vertical; min-height: 100px; }
+.form-submit { background: var(--gold); color: var(--navy); border: none; padding: 15px 36px; font-family: 'DM Sans', sans-serif; font-size: 0.77rem; letter-spacing: 0.17em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: all 0.25s; align-self: flex-start; margin-top: 0.25rem; }
+.form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+.form-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); font-weight: 300; margin-top: 0.25rem; }
+
+/* FOOTER */
+footer { background: #00101f; border-top: 1px solid var(--border-gold); padding: 3rem 5rem; }
+.footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 2rem; }
+.footer-brand-name { font-family: 'Cormorant Garamond', serif; color: var(--white); font-size: 1rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+.footer-est { color: var(--gold); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.85rem; }
+.footer-brand-text { color: rgba(255,255,255,0.28); font-size: 0.8rem; line-height: 1.75; font-weight: 300; }
+.footer-col-title { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.footer-links a { color: rgba(255,255,255,0.38); text-decoration: none; font-size: 0.83rem; font-weight: 300; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; }
+.footer-ethics strong { color: rgba(255,255,255,0.45); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: 5px; font-weight: 500; }
+.footer-ethics p { color: rgba(255,255,255,0.25); font-size: 0.77rem; line-height: 1.75; font-weight: 300; max-width: 600px; }
+.footer-legal { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+.footer-legal-links { display: flex; gap: 1.25rem; }
+.footer-legal-links a { color: rgba(255,255,255,0.25); text-decoration: none; font-size: 0.73rem; transition: color 0.2s; }
+.footer-legal-links a:hover { color: rgba(255,255,255,0.55); }
+.footer-copy { color: rgba(255,255,255,0.18); font-size: 0.7rem; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  #home { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 4rem 2rem; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .industries-grid { grid-template-columns: repeat(2, 1fr); }
+  #why { grid-template-columns: 1fr; gap: 3rem; }
+  .services-header, .frameworks-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  #about, #contact { grid-template-columns: 1fr; gap: 3rem; }
+  #why, #about, #contact, #services, #frameworks, #industries, #process, #proof { padding: 5rem 2rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .frameworks-grid { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .process-steps::before { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; }
+  .footer-legal { align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="logo-diamond"><div class="logo-diamond-inner"></div></div>
+    <div>
+      <div class="logo-text">Luminent Advisory</div>
+      <div class="logo-est">Est. 2026 · Licensed LLC</div>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#frameworks">Frameworks</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta-btn">Free Discovery Call</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="hero-badge-dot"></span><span class="hero-badge-text">Cybersecurity & IT Advisory · Est. 2026</span></div>
+    <h1 class="hero-h1">You Shouldn't Need a<br>Full-Time CISO to Get<br><em>Enterprise-Grade Security.</em></h1>
+    <p class="hero-sub">Luminent brings certified cybersecurity leadership and framework-driven IT advisory to organizations that need real expertise — without the overhead of a full-time hire.</p>
+    <p class="hero-sub-bold">Serving SMBs, healthcare, retail, and financial services organizations.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold">Book a Free 30-Min Call</a>
+      <a href="#services" class="btn-outline">See What We Do</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-problem-box">
+      <div class="hero-problem-label">Sound familiar?</div>
+      <ul class="hero-problem-list">
+        <li>Your organization handles sensitive data but has no formal security program</li>
+        <li>You're facing a PCI-DSS or compliance audit with no clear roadmap</li>
+        <li>IT projects keep running over budget and deadline with no accountability</li>
+        <li>You know you have vulnerabilities — but don't know where to start</li>
+        <li>Your board wants a security briefing and your team can't deliver one</li>
+      </ul>
+    </div>
+    <div class="hero-trust-row">
+      <div class="hero-trust-chip"><div class="hero-trust-chip-val">10+</div><div class="hero-trust-chip-label">Years IT Leadership</div></div>
+      <div class="hero-trust-chip"><div class="hero-trust-chip-val">CISSP</div><div class="hero-trust-chip-label">Certified Security</div></div>
+      <div class="hero-trust-chip"><div class="hero-trust-chip-val">PMP</div><div class="hero-trust-chip-label">Certified PM</div></div>
+      <div class="hero-trust-chip"><div class="hero-trust-chip-val">MBA</div><div class="hero-trust-chip-label">Business Acumen</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section id="industries">
+  <div class="industries-top reveal">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">Who We Serve</span></div>
+    <h2 class="section-h">Built for Organizations<br>That Handle What Matters</h2>
+    <p>Whether you process payments, store patient records, or manage financial data — the stakes are high and one gap can cost everything. Luminent speaks your industry's language.</p>
+  </div>
+  <div class="industries-grid reveal">
+    <div class="industry-card">
+      <div class="ind-icon">⬡</div>
+      <div class="ind-title">Small & Mid-Size Business</div>
+      <p class="ind-text">You're too big to ignore security and too lean to staff a full security team. Luminent gives you fractional CISO-level advisory that fits your budget and scales with you.</p>
+      <span class="ind-tag">Fractional Advisory</span>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">✚</div>
+      <div class="ind-title">Healthcare</div>
+      <p class="ind-text">Patient data breaches are catastrophic — legally and reputationally. We help healthcare organizations build defensible security postures aligned to HIPAA expectations and NIST guidance.</p>
+      <span class="ind-tag">HIPAA Alignment</span>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">◈</div>
+      <div class="ind-title">Retail & E-Commerce</div>
+      <p class="ind-text">Every card transaction carries liability. We specialize in PCI-DSS readiness — from scoping your cardholder data environment to preparing you for your next QSA audit.</p>
+      <span class="ind-tag">PCI-DSS Readiness</span>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">◇</div>
+      <div class="ind-title">Financial Services</div>
+      <p class="ind-text">Regulators, examiners, and clients expect a mature security program. We help financial organizations translate technical controls into board-ready risk language that satisfies scrutiny.</p>
+      <span class="ind-tag">Risk Advisory</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY LUMINENT -->
+<section id="why">
+  <div class="reveal">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">The Problem We Solve</span></div>
+    <h2 class="section-h" style="margin-bottom:1.25rem;">The Gap Between Your<br>Security Team & Your Board</h2>
+    <p class="lead">Most organizations face a dangerous disconnect: technical teams speak in CVEs and firewall rules, while executives think in dollars and risk. Neither side feels understood — decisions get delayed, gaps persist, and exposure grows.</p>
+    <div class="why-stat-row">
+      <div class="why-stat"><div class="why-stat-num">60%</div><div class="why-stat-label">of SMBs that suffer a breach close within 6 months</div></div>
+      <div class="why-stat"><div class="why-stat-num">$4.9M</div><div class="why-stat-label">average cost of a data breach in 2024 (IBM)</div></div>
+      <div class="why-stat"><div class="why-stat-num">80%</div><div class="why-stat-label">of breaches involve preventable misconfigurations</div></div>
+    </div>
+    <a href="#contact" class="btn-gold">Talk to an Advisor — Free</a>
+  </div>
+  <div class="why-points reveal">
+    <div class="why-point">
+      <div class="why-point-num">01</div>
+      <div><div class="why-point-title">We speak both languages</div><div class="why-point-text">CISSP for the technical depth. An MBA for the business context. We translate risk into language that moves organizations forward — and satisfies boards.</div></div>
+    </div>
+    <div class="why-point">
+      <div class="why-point-num">02</div>
+      <div><div class="why-point-title">No vendor ties, no bias</div><div class="why-point-text">Fully independent. We recommend what's right for your situation — not what earns a referral fee or vendor kickback.</div></div>
+    </div>
+    <div class="why-point">
+      <div class="why-point-num">03</div>
+      <div><div class="why-point-title">Frameworks auditors recognize</div><div class="why-point-text">Every recommendation anchors to NIST or PCI-DSS. When your auditor, insurer, or board asks "why?" — you'll have a defensible answer.</div></div>
+    </div>
+    <div class="why-point">
+      <div class="why-point-num">04</div>
+      <div><div class="why-point-title">Senior-level, without the full-time cost</div><div class="why-point-text">Get the strategic value of a CISO-level advisor without the $200k+ salary. Engagements are scoped to your actual needs, not a retainer.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">What We Deliver</span></div>
+      <h2 class="section-h">Services Built Around<br>Your Outcomes</h2>
+    </div>
+    <p>We don't sell hours — we deliver results. Every engagement is scoped to a clear objective, with milestones and deliverables your whole organization can act on immediately.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="svc-card">
+      <div class="svc-num">01</div>
+      <div class="svc-problem">Worried about your exposure?</div>
+      <div class="svc-title">Cybersecurity Advisory</div>
+      <p class="svc-text">Most organizations don't know what they don't know. We conduct structured risk assessments to surface your real gaps — then build a prioritized roadmap aligned to the NIST Cybersecurity Framework that your team can actually execute.</p>
+      <ul class="svc-outcomes">
+        <li>NIST CSF maturity assessment with plain-language gap report</li>
+        <li>Risk-prioritized remediation roadmap</li>
+        <li>Incident response plan your team can follow under pressure</li>
+        <li>Board-ready risk briefing materials</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">02</div>
+      <div class="svc-problem">Know you have vulnerabilities but unsure where to start?</div>
+      <div class="svc-title">Vulnerability Management</div>
+      <p class="svc-text">Scanning tools find vulnerabilities — but without prioritization and a plan, they create noise, not security. We use OpenVAS and structured methodology to identify what actually matters and build a program that keeps you ahead of attackers.</p>
+      <ul class="svc-outcomes">
+        <li>Authenticated vulnerability scanning and analysis</li>
+        <li>Risk-ranked remediation plan (not just a raw report)</li>
+        <li>Continuous monitoring strategy and team ownership model</li>
+        <li>Executive summary — no jargon</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">03</div>
+      <div class="svc-problem">IT projects going sideways?</div>
+      <div class="svc-title">IT Project Leadership</div>
+      <p class="svc-text">Complex infrastructure projects fail not because of the technology — they fail because of scope creep, unclear accountability, and poor stakeholder communication. PMP-certified oversight keeps your project on time, on budget, and on scope.</p>
+      <ul class="svc-outcomes">
+        <li>Project scoping, charter, and governance structure</li>
+        <li>Stakeholder communication and status reporting</li>
+        <li>Risk and issue management throughout delivery</li>
+        <li>Vendor coordination and technical oversight</li>
+      </ul>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">04</div>
+      <div class="svc-problem">Facing a PCI audit or compliance deadline?</div>
+      <div class="svc-title">PCI-DSS Readiness</div>
+      <p class="svc-text">Failing a PCI audit means fines, card processing suspension, and reputational damage. We prepare you for your QSA engagement by identifying every gap upfront — so there are no surprises on audit day.</p>
+      <ul class="svc-outcomes">
+        <li>Cardholder data environment scoping and segmentation review</li>
+        <li>Gap analysis against all applicable PCI-DSS requirements</li>
+        <li>Control implementation guidance and evidence preparation</li>
+        <li>Pre-audit readiness check and remediation support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="process">
+  <div class="process-header reveal">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">How It Works</span></div>
+    <h2 class="section-h" style="color:var(--white)">Simple. Focused. No Surprises.</h2>
+    <p>We know that hiring an outside advisor can feel like a leap of faith. Here's exactly what working with Luminent looks like from day one through final delivery.</p>
+  </div>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="process-step-num">1</div>
+      <div class="process-step-title">Discovery Call</div>
+      <p class="process-step-text">30 minutes, no obligation. We listen to your situation, ask the right questions, and tell you honestly whether and how we can help.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">2</div>
+      <div class="process-step-title">Scoped Proposal</div>
+      <p class="process-step-text">You receive a fixed-scope proposal — specific deliverables, timeline, and pricing. No vague retainers or open-ended billing surprises.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">3</div>
+      <div class="process-step-title">Advisory Engagement</div>
+      <p class="process-step-text">Work begins. You get regular updates, direct access to your senior advisor, and deliverables your team can act on immediately.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">4</div>
+      <div class="process-step-title">Measurable Outcomes</div>
+      <p class="process-step-text">Every engagement closes with a clear record of what was found, what was fixed, and your next priorities — documented and defensible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORKS -->
+<section id="frameworks">
+  <div class="frameworks-header reveal">
+    <div>
+      <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">Our Methodology</span></div>
+      <h2 class="section-h">Why Frameworks<br>Protect You</h2>
+    </div>
+    <p>When a breach happens — or an auditor arrives — "we did our best" is not a legal defense. NIST and PCI-DSS give every security decision a documented, repeatable, industry-recognized basis that regulators, insurers, and boards respect.</p>
+  </div>
+  <div class="frameworks-grid reveal">
+    <div class="fw-card">
+      <div class="fw-abbr">NIST</div>
+      <div class="fw-name">NIST Cybersecurity Framework (CSF)</div>
+      <p class="fw-text">The gold standard for building and measuring a security program. Used by government agencies, healthcare systems, and enterprise organizations worldwide. We use it to assess where you are today and map a clear, prioritized path forward.</p>
+      <ul class="fw-points">
+        <li>Identify your assets, risks, and current control gaps</li>
+        <li>Protect with controls matched to your actual risk tolerance</li>
+        <li>Detect threats through continuous monitoring strategies</li>
+        <li>Respond with a plan your team can execute under pressure</li>
+        <li>Recover faster with documented procedures and improvement cycles</li>
+      </ul>
+    </div>
+    <div class="fw-card">
+      <div class="fw-abbr">PCI</div>
+      <div class="fw-name">PCI Data Security Standard (DSS)</div>
+      <p class="fw-text">If your business accepts, processes, or stores payment card data — PCI-DSS compliance is mandatory. Non-compliance means fines, failed audits, and the potential loss of your card processing privileges. We get you ready before the auditors arrive.</p>
+      <ul class="fw-points">
+        <li>Define and reduce your cardholder data environment scope</li>
+        <li>Network segmentation and firewall architecture review</li>
+        <li>Access control and authentication (Requirements 7–8)</li>
+        <li>Logging, monitoring, and alerting program design</li>
+        <li>Evidence collection and documentation for QSA audits</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section id="proof">
+  <div class="proof-header reveal">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">Client Feedback</span></div>
+    <h2 class="section-h">What Clients Say</h2>
+    <p>Names and identifying details modified at client request. All testimonials represent genuine engagement outcomes.</p>
+  </div>
+  <div class="proof-grid reveal">
+    <div class="proof-card">
+      <div class="proof-stars">★★★★★</div>
+      <div class="proof-divider"></div>
+      <p class="proof-quote">"We'd been putting off a security assessment for two years because we didn't know where to start. Luminent walked us through the entire process, gave us a clear priority list, and — for the first time — I could actually explain our risk posture to our board."</p>
+      <div class="proof-author">Operations Director</div>
+      <div class="proof-role">Regional Healthcare Group</div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-stars">★★★★★</div>
+      <div class="proof-divider"></div>
+      <p class="proof-quote">"Our QSA audit was three months away and we had 40 open findings from the prior year. Luminent came in, prioritized what actually mattered for audit day, and we passed with zero major findings. Worth every dollar."</p>
+      <div class="proof-author">CFO</div>
+      <div class="proof-role">E-Commerce Retailer</div>
+    </div>
+    <div class="proof-card">
+      <div class="proof-stars">★★★★★</div>
+      <div class="proof-divider"></div>
+      <p class="proof-quote">"No upselling, no scare tactics — just a realistic picture of where we stood and a practical plan to fix it. Our infrastructure project finished on time and on budget for the first time in company history."</p>
+      <div class="proof-author">CEO</div>
+      <div class="proof-role">Financial Services Firm, 85 Employees</div>
+    </div>
+  </div>
+  <p class="proof-notice reveal">✦ &nbsp; Every client — regardless of size — receives direct, senior-level advisory attention from day one through final delivery.</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-eyebrow" style="margin-bottom:0.9rem;"><span class="eyebrow-line"></span><span class="eyebrow-text">About Luminent</span></div>
+    <h2 class="about-h">An Advisor Who Has Sat<br>on Both Sides of the Table</h2>
+    <p class="about-text">Luminent Business & Technical Advisory Group LLC was founded in 2026 on a simple conviction: growing organizations deserve the same caliber of security leadership that Fortune 500 companies take for granted.</p>
+    <p class="about-text">With over a decade of IT leadership experience spanning enterprise infrastructure, security architecture, and complex program delivery — our principal advisor has operated in environments where the cost of getting it wrong is measured in millions.</p>
+    <div class="about-why">
+      <p>"I built Luminent because I kept seeing the same problem: organizations with real security gaps and no practical path forward. Not because the expertise didn't exist — but because nobody was translating it into action they could afford and actually execute."</p>
+    </div>
+    <p class="about-text">Every engagement is personally led. You work directly with a CISSP, PMP, and MBA-credentialed advisor — never delegated to junior staff.</p>
+    <div class="about-independent">
+      <div class="about-independent-icon">◎</div>
+      <p><strong>Independence Guarantee:</strong> Luminent operates as a fully independent advisory firm. We use dedicated private hardware and independently licensed tools — with no vendor partnerships or referral arrangements that could bias our recommendations.</p>
+    </div>
+  </div>
+  <div class="about-creds-col reveal">
+    <div class="cred-item"><div class="cred-badge">CISSP</div><div><div class="cred-name">Certified Information Systems Security Professional</div><div class="cred-org">ISC² — the highest credential in cybersecurity</div></div></div>
+    <div class="cred-item"><div class="cred-badge">PMP</div><div><div class="cred-name">Project Management Professional</div><div class="cred-org">PMI — globally recognized delivery credential</div></div></div>
+    <div class="cred-item"><div class="cred-badge">MBA</div><div><div class="cred-name">Master of Business Administration</div><div class="cred-org">Graduate-level business and strategic leadership</div></div></div>
+    <div class="cred-item"><div class="cred-badge" style="font-size:0.58rem;line-height:1.3;text-align:center;padding:4px;">NIST<br>CSF</div><div><div class="cred-name">NIST Cybersecurity Framework</div><div class="cred-org">Risk-based security program design and assessment</div></div></div>
+    <div class="cred-item"><div class="cred-badge" style="font-size:0.58rem;line-height:1.3;text-align:center;padding:4px;">PCI<br>DSS</div><div><div class="cred-name">PCI-DSS Compliance Advisory</div><div class="cred-org">Payment security and audit readiness</div></div></div>
+    <div class="cred-item"><div class="cred-badge" style="font-size:0.58rem;line-height:1.3;text-align:center;padding:4px;">10+<br>YRS</div><div><div class="cred-name">10+ Years IT Leadership Experience</div><div class="cred-org">Enterprise infrastructure, security, and program delivery</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text">Get Started</span></div>
+    <h2 class="section-h">Let's Talk About<br>Your Situation</h2>
+    <p class="lead">The first conversation costs you nothing. In 30 minutes, we'll help you understand where your biggest gaps are — and whether Luminent is the right fit to help you close them.</p>
+    <div class="contact-cta-highlight">
+      <div class="contact-cta-icon">◎</div>
+      <div>
+        <div class="contact-cta-title">Free 30-Minute Discovery Call</div>
+        <div class="contact-cta-sub">No sales pitch. No obligation. Just an honest conversation about your security and IT challenges — and what a practical path forward looks like for your organization.</div>
+      </div>
+    </div>
+    <div class="contact-meta">
+      <span class="contact-meta-item">Response within one business day</span>
+      <span class="contact-meta-item">All inquiries treated as confidential</span>
+      <span class="contact-meta-item">Serving clients nationwide</span>
+    </div>
+  </div>
+  <div class="contact-form reveal">
+    <div class="form-row">
+      <div class="form-field"><label>First Name</label><input type="text" placeholder="Jane"></div>
+      <div class="form-field"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-field"><label>Company / Organization</label><input type="text" placeholder="Acme Inc."></div>
+      <div class="form-field"><label>Business Email</label><input type="email" placeholder="jane@company.com"></div>
+    </div>
+    <div class="form-field">
+      <label>Industry</label>
+      <select>
+        <option value="" disabled selected>Select your industry...</option>
+        <option>Healthcare</option>
+        <option>Retail / E-Commerce</option>
+        <option>Financial Services</option>
+        <option>Small / Mid-Size Business (Other)</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>What Brings You Here?</label>
+      <select>
+        <option value="" disabled selected>Select your primary concern...</option>
+        <option>Cybersecurity Assessment / Risk Review</option>
+        <option>PCI-DSS Compliance / Upcoming Audit</option>
+        <option>Vulnerability Management Program</option>
+        <option>IT Project Oversight</option>
+        <option>General Security Advisory</option>
+        <option>Not Sure — I Just Need Help</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Anything Else? (Optional)</label>
+      <textarea placeholder="Briefly describe your situation or any upcoming deadline..."></textarea>
+    </div>
+    <button class="form-submit" onclick="handleSubmit(event)">Request My Free Discovery Call →</button>
+    <p class="form-note">Your information is never shared or sold. All inquiries are treated as confidential.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Luminent Business & Technical Advisory Group LLC</div>
+      <div class="footer-est">Est. 2026 · Licensed LLC</div>
+      <p class="footer-brand-text">Cybersecurity and IT management advisory for SMBs, healthcare, retail, and financial services. Framework-driven. Independently operated. Results-focused.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#frameworks">Frameworks</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Cybersecurity Advisory</a></li>
+        <li><a href="#services">Vulnerability Management</a></li>
+        <li><a href="#services">IT Project Leadership</a></li>
+        <li><a href="#services">PCI-DSS Readiness</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-ethics">
+      <strong>Ethics Statement</strong>
+      <p>Luminent Business & Technical Advisory Group LLC operates as an independent entity. All advisory services and technical assessments are conducted using dedicated private hardware and independently licensed tools. We maintain no vendor partnerships or referral arrangements that could influence our recommendations.</p>
+    </div>
+    <div class="footer-legal">
+      <div class="footer-legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Engagement</a>
+      </div>
+      <div class="footer-copy">© 2026 Luminent Business & Technical Advisory Group LLC. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 75); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => obs.observe(el));
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.height = window.scrollY > 60 ? '58px' : '70px';
+});
+
+let navOpen = false;
+function toggleNav() {
+  navOpen = !navOpen;
+  const links = document.getElementById('navLinks');
+  if (navOpen) {
+    links.style.cssText = 'display:flex;flex-direction:column;gap:0;position:fixed;top:58px;left:0;right:0;background:rgba(0,21,43,0.98);padding:0.5rem 0;border-bottom:1px solid rgba(201,168,76,0.2);z-index:99;';
+    links.querySelectorAll('a').forEach(a => { a.style.cssText = 'padding:1rem 2rem;font-size:0.9rem;border-bottom:1px solid rgba(255,255,255,0.05);'; });
+  } else { links.style.cssText = 'display:none;'; }
+}
+
+function handleSubmit(e) {
+  const btn = e.target;
+  btn.textContent = 'Request Received ✓ — We\'ll Be in Touch';
+  btn.style.cssText = 'background:#1a5c35;color:#fff;letter-spacing:0.05em;padding:15px 36px;border:none;font-family:DM Sans,sans-serif;font-size:0.77rem;font-weight:600;cursor:pointer;';
+  setTimeout(() => {
+    btn.textContent = 'Request My Free Discovery Call →';
+    btn.style.cssText = '';
+  }, 4000);
+}
+</script>
+</body>
+</html>
